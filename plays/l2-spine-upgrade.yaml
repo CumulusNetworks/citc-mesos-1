@@ -1,0 +1,29 @@
+---
+- hosts: leafs
+
+  tasks:
+
+  - name:  set the host specific vars
+    set_fact:
+      myvars: "{{ switchvars[inventory_hostname] }}"
+
+  - name: Make ourselves unattractive from a BGP perspective (route to our peer)
+    nclu:
+      commands:
+      - add routing route-map MAINT permit 10 set as-path prepend {{ myvars.ASN }}
+      - add routing route-map MAINT permit 11 set as-path prepend {{ myvars.ASN }}
+      - add bgp neighbor {{ AGG_PORTS }} route-map MAINT out
+      atomic: true
+      description: Make Routing Ugly
+  - pause:
+      seconds: 20
+
+  - name: Initiate ONIE install
+    shell: "/usr/cumulus/bin/onie-select -if"
+    become: true
+  - shell: nohup bash -c 'sleep 2 && shutdown -r now "Ansible kernel update applied"' &
+    become: true
+    async: 1
+    poll: 0
+    ignore_errors: true
+...

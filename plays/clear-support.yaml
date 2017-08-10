@@ -1,0 +1,12 @@
+# 
+# Make sure the right device drivers are installed for mellanox nics
+#
+# - MLNX: mlnx-en-3.4-1.0.0.3-ubuntu16.04-x86_64
+---
+- hosts: switches
+  become: yes
+
+  tasks:
+  - name: remove all files in the /var/support
+    shell: "rm -rf /var/support/*"
+...

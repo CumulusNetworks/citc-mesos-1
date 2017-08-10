@@ -1,0 +1,32 @@
+---
+- hosts: oob-mgmt-server
+  roles:
+  - internet
+
+- hosts: leaf01,leaf02
+  roles:
+  - switch-common
+  - l3-leaf
+
+- hosts: spines
+  roles:
+  - switch-common
+  - l3-spine
+
+- hosts: leaf03,leaf04
+  roles:
+  - switch-common
+  - l3-leaf
+
+- hosts: server01
+  roles:
+  - server-common
+  - mesos-master
+
+- hosts: server02, server03, server04
+  roles:
+  - server-common
+  - mesos-slave
+...
+
+ 

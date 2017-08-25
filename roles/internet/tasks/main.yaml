@@ -46,9 +46,9 @@
     chain: PREROUTING
     in_interface: eth0
     protocol: tcp
-    destination_port: "{{ MESOS_UI }}"
+    destination_port: "{{ MARATHON_UI }}"
     jump: DNAT
-    to_destination: "{{ servervars[ MESOS_MASTER ].V4 }}:{{ MESOS_UI }}"
+    to_destination: "{{ servervars[ MESOS_MASTER ].V4 }}:{{ MARATHON_UI }}"
   become: yes
 
 - name: Start NetQ and Connect to the NetQ Telemetry Server

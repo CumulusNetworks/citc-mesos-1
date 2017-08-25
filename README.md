@@ -5,19 +5,11 @@ a close approximation of using Mesosphere DC/OS.  Note that this is NOT DC/OS
 mainly because it required CentOS, and most of our collateral/tools is Ubuntu
 focused.
 
-Documentation on DC/OS installation can be found at...
-
-https://dcos.io/docs/1.9/installing/custom/
-
 I'm leaning on
 
 https://www.digitalocean.com/community/tutorials/how-to-configure-a-production-ready-mesosphere-cluster-on-ubuntu-14-04
 
 for Mesosphere/Mesos/Marathon installation.
-
-Information on DC/OS networking models can be found at...
-
-https://dcos.io/docs/1.9/networking/
 
 This environment uses FRRouting for host L3 peering with the data plane network
 and installs the NetQ host agents for host visibility, thus embodying some of

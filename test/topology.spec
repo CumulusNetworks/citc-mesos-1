@@ -11,7 +11,7 @@ vm server02 ubuntu-16.04 2 4 4
 vm server03 ubuntu-16.04 2 4 4
 vm server04 ubuntu-16.04 2 4 4
 
-network oob-mgmt-server eth0 10.0.0.254 255.255.0.0 public
+network oob-mgmt-server eth0 10.255.0.1 255.255.0.0 public
 service oob-mgmt-server ssh eth0 22 TCP public
 service oob-mgmt-server http eth0 80 TCP public
 service oob-mgmt-server https eth0 443 TCP public

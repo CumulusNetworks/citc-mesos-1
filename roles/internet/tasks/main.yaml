@@ -7,6 +7,12 @@
 - set_fact:
     myvars: "{{ servervars[inventory_hostname] }}"
 
+- name: upgrade Cumulus Linux
+  command: apt-get update
+  become: true
+- command: apt-get -qy upgrade
+  become: true
+
 - name:  Unnumbered BGP routing (v4 & V6) to the fabric
   nclu:
     commands:
@@ -74,5 +80,5 @@
   become: yes
 - pause:
     seconds: 5
-- shell: netq agent restart
+- shell: netq config agent restart
 

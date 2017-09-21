@@ -43,19 +43,27 @@
 - apt:
     update_cache: yes
   become: true
-      
+
 
 - name: install useful operational packages
   apt:
     name: "{{ item }}"
   become: true
-  with_items: 
+  with_items:
   - zile
   - lldpd
   - traceroute
   - ifupdown
   - tcpdump
   - ethtool
+- name: configure lldpd settings to only listen on non-mgmt ports
+  blockinfile:
+    dest: /etc/lldp.d/README.conf
+    insertafter: EOF
+    block: |
+      configure system interface pattern eth*,!eth0
+      configure lldp portidsubtype ifname
+  become: yes
 - service:
     name: lldpd
     enabled: yes
@@ -130,7 +138,7 @@
   become: yes
 - shell: ifdown --force --all --allow=ansible && ifup --force --all --allow=ansible
   become: true
-  
+
 - name: Start NetQ and Connect to the NetQ Telemetry Server
   service:
     name: rsyslog

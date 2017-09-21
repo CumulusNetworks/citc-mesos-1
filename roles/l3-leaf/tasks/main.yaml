@@ -27,4 +27,9 @@
     atomic: true
     description: "unnumbered BGP to Internet"
   when: (inventory_hostname  == "leaf01") or (inventory_hostname == "leaf02")
+
+- name:  Start the NetQ agent
+  pause:
+    seconds: 10
+- shell: netq config agent restart
 ...

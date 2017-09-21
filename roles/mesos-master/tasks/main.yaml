@@ -28,7 +28,7 @@
     dest: /etc/zookeeper/conf/myid
     owner: root
     group: root
-    mode: 
+    mode:
   become: true
 - blockinfile:
     path: /etc/zookeeper/conf/zoo.cfg
@@ -50,14 +50,14 @@
     dest: /etc/mesos-master/ip
     owner: root
     group: root
-    mode: 
+    mode:
   become: true
 - template:
     src: hostname.j2
     dest: /etc/mesos-master/hostname
     owner: root
     group: root
-    mode: 
+    mode:
   become: true
 
 - name: setup marathon
@@ -77,14 +77,21 @@
     dest: /etc/marathon/conf/master
     owner: root
     group: root
-    mode: 
+    mode:
   become: true
 - template:
     src: marathon.zk.j2
     dest: /etc/marathon/conf/zk
     owner: root
     group: root
-    mode: 
+    mode:
+  become: true
+- template:
+    src: marathon.task_launch_timeout.j2
+    dest: /etc/marathon/conf/task_launch_timeout
+    owner: root
+    group: root
+    mode:
   become: true
 
 - name: Restart services
@@ -97,7 +104,7 @@
     dest: /etc/init/mesos-slave.override
     owner: root
     group: root
-    mode: 
+    mode:
   become: true
 - service:
     name: zookeeper

@@ -25,7 +25,12 @@
   when: MGMT_VRF_CHECK.stdout.find('inet 127.0.0.1/8 scope host mgmt') == -1
 
 - name: install netq
-  apt:
+  apt_repository:
+    repo: deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-1.1
+    filename: netq
+    state: present
+  become: true
+- apt:
     name: cumulus-netq
     update_cache: yes
   become: true
@@ -45,7 +50,5 @@
     group: root
     mode: "u=rw,o=r,g=r"
   become: yes
-- pause:
-    seconds: 5
-- shell: netq agent restart
+# We kick the agent once the data plane is set up
 ...

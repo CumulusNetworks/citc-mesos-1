@@ -3,29 +3,32 @@
   roles:
   - internet
 
-- hosts: leaf01,leaf02
+- hosts: switches
   roles:
   - switch-common
+
+- hosts: leaf01,leaf02
+  roles:
   - l3-leaf
 
 - hosts: spines
   roles:
-  - switch-common
   - l3-spine
 
 - hosts: leaf03,leaf04
   roles:
-  - switch-common
   - l3-leaf
+
+- hosts: servers
+  roles:
+  - server-common
 
 - hosts: server01
   roles:
-  - server-common
   - mesos-master
 
 - hosts: server02, server03, server04
   roles:
-  - server-common
   - mesos-slave
 ...
 

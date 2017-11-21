@@ -31,5 +31,5 @@
 - name:  Start the NetQ agent
   pause:
     seconds: 10
-- shell: netq config agent restart
+- shell: netq config restart agent
 ...

@@ -152,4 +152,4 @@
   become: yes
 - pause:
     seconds: 5
-- shell: netq config agent restart
+- shell: netq config restart agent

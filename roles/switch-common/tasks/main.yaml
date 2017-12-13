@@ -28,11 +28,12 @@
   apt_repository:
     repo: deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-1.2
     filename: netq
-    state: latest
+    state: present
   become: true
 - apt:
     name: cumulus-netq
     update_cache: yes
+    state: latest
   become: true
 - service:
     name: rsyslog

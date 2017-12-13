@@ -18,7 +18,7 @@
     state: present
   become: true
 - apt_repository:
-    repo: deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-1.1
+    repo: deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-1.2
     filename: netq
     state: present
   become: true

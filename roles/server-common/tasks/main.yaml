@@ -65,6 +65,8 @@
 - name: Add HostPack (NetQ and FRR)
   apt:
     name: cumulus-netq
+    state: latest
+    
   become: yes
 - copy:
     src: files/frr_3.1+cl3u1_amd64.deb

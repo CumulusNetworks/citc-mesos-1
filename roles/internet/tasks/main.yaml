@@ -16,6 +16,8 @@
     name: netd
     state: restarted
   become: true
+- pause:
+   seconds: 15
 
 - name:  Unnumbered BGP routing (v4 & V6) to the fabric
   nclu:

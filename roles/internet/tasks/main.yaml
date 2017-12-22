@@ -12,6 +12,10 @@
   become: true
 - command: apt-get -qy upgrade
   become: true
+- service:
+    name: netd
+    state: restarted
+  become: true
 
 - name:  Unnumbered BGP routing (v4 & V6) to the fabric
   nclu:

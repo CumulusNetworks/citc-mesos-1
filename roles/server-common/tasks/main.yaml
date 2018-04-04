@@ -14,8 +14,8 @@
 
 - name: add repositories for NetQ/HostPack, Mesosphere, Docker and then update the apt cache
   apt_key:
-    url:  https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey
-    state: present
+    keyserver: keyserver.ubuntu.com
+    id: A88BBC95
   become: true
 - apt_repository:
     repo: deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-1.2
@@ -43,13 +43,13 @@
 - apt:
     update_cache: yes
   become: true
-      
+
 
 - name: install useful operational packages
   apt:
     name: "{{ item }}"
   become: true
-  with_items: 
+  with_items:
   - zile
   - lldpd
   - traceroute
@@ -66,7 +66,7 @@
   apt:
     name: cumulus-netq
     state: latest
-    
+
   become: yes
 - copy:
     src: files/frr_3.1+cl3u1_amd64.deb
@@ -132,7 +132,7 @@
   become: yes
 - shell: ifdown --force --all --allow=ansible && ifup --force --all --allow=ansible
   become: true
-  
+
 - name: Start NetQ and Connect to the NetQ Telemetry Server
   service:
     name: rsyslog

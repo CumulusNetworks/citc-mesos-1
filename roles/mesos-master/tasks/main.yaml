@@ -61,34 +61,9 @@
   become: true
 
 - name: setup marathon
-  file:
-    path: /etc/marathon/conf
-    state: directory
-  become: true
-- template:
-    src: marathon.conf.j2
-    dest: /etc/marathon/conf/hostname
-    owner: root
-    group: root
-    mode:
-  become: true
-- template:
-    src: marathon.master.j2
-    dest: /etc/marathon/conf/master
-    owner: root
-    group: root
-    mode:
-  become: true
-- template:
-    src: marathon.zk.j2
-    dest: /etc/marathon/conf/zk
-    owner: root
-    group: root
-    mode:
-  become: true
-- template:
-    src: marathon.task_launch_timeout.j2
-    dest: /etc/marathon/conf/task_launch_timeout
+  template:
+    src: marathon.j2
+    dest: /etc/default/marathon
     owner: root
     group: root
     mode:
